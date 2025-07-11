@@ -1,47 +1,81 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <title>Statement Generator</title>
   <style>
-    body { font-family: Arial; margin: 2rem; }
-    input, textarea { width: 100%; margin-bottom: 10px; padding: 8px; }
-    label { font-weight: bold; margin-top: 1em; display: block; }
-    button { padding: 10px 20px; font-size: 16px; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+    }
+    input, textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 1em;
+      display: block;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
   <h1>Generate Customer Statement</h1>
+
   <form method="POST">
-    <label>Collection Start Date</label>
+    <label for="collectionStart">Collection Start Date (YYYY-MM-DD)</label>
     <input type="date" name="collectionStart" required>
 
-    <label>Total Amount Advanced</label>
+    <label for="totalAdvanced">Total Amount Advanced</label>
     <input type="text" name="totalAdvanced" required>
 
-    <label>Advance Count</label>
+    <label for="advanceCount">Advance Count</label>
     <input type="number" name="advanceCount" required>
 
-    <label>Total Fee</label>
+    <label for="totalFee">Total Fee</label>
     <input type="text" name="totalFee" required>
 
-    <label>Total Obligation</label>
+    <label for="totalObligation">Total Obligation</label>
     <input type="text" name="totalObligation" required>
 
-    <label>Outstanding Balance</label>
+    <label for="outstandingBalance">Outstanding Balance</label>
     <input type="text" name="outstandingBalance" required>
 
-    <label>Successful Payments</label>
+    <label for="successfulPayments">Successful Payments</label>
     <input type="text" name="successfulPayments" required>
 
-    <label>Failed Payments</label>
+    <label for="failedPayments">Failed Payments</label>
     <input type="text" name="failedPayments" required>
 
-    <label>Failed Payment Details (comma-separated, one per line)</label>
-    <textarea name="failedDetails" rows="4" placeholder="Jul 9, 2025, $37.73, Returned, insufficient_fund"></textarea>
+    <label for="failedDetails">Failed Payment Details (one per line in format: Date, Amount, Status, Reason)</label>
+    <textarea name="failedDetails" rows="5" placeholder="Jul 9, 2025, $37.73, Returned, insufficient_fund
+Jul 8, 2025, $45.00, Failed, refer_to_payer"></textarea>
 
-    <label>Recent Payment Activity (10 lines per entry)</label>
-    <textarea name="revenueHistory" rows="10" placeholder="Jul 9, 2025\n$125.00\n$17.50\ndirect_debit\nJul 11, 2025\nOn Hold\nSource\nIncrease\nExternal Link\n1\n..."></textarea>
+    <label for="revenueHistory">Recent Payment Activity (10 lines per block with this structure):
+      <br><em>Revenue Date, Revenue, Collected, Method, Collection Date, Source, Increase, Status, External Link, Attempts</em>
+    </label>
+    <textarea name="revenueHistory" rows="14" placeholder="Jul 9, 2025
+$125.00
+$17.50
+direct_debit
+Jul 11, 2025
+Pipe
+$17.50
+On Hold
+External Link
+1"></textarea>
 
     <button type="submit">Generate Statement</button>
   </form>
