@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Statement Generator</title>
+  <style>
+    body { font-family: Arial; margin: 2rem; }
+    input, textarea { width: 100%; margin-bottom: 10px; padding: 8px; }
+    label { font-weight: bold; margin-top: 1em; display: block; }
+    button { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Generate Customer Statement</h1>
+  <form method="POST">
+    <label>Collection Start Date</label>
+    <input type="date" name="collectionStart" required>
+
+    <label>Total Amount Advanced</label>
+    <input type="text" name="totalAdvanced" required>
+
+    <label>Advance Count</label>
+    <input type="number" name="advanceCount" required>
+
+    <label>Total Fee</label>
+    <input type="text" name="totalFee" required>
+
+    <label>Total Obligation</label>
+    <input type="text" name="totalObligation" required>
+
+    <label>Outstanding Balance</label>
+    <input type="text" name="outstandingBalance" required>
+
+    <label>Successful Payments</label>
+    <input type="text" name="successfulPayments" required>
+
+    <label>Failed Payments</label>
+    <input type="text" name="failedPayments" required>
+
+    <label>Failed Payment Details (comma-separated, one per line)</label>
+    <textarea name="failedDetails" rows="4" placeholder="Jul 9, 2025, $37.73, Returned, insufficient_fund"></textarea>
+
+    <label>Recent Payment Activity (10 lines per entry)</label>
+    <textarea name="revenueHistory" rows="10" placeholder="Jul 9, 2025\n$125.00\n$17.50\ndirect_debit\nJul 11, 2025\nOn Hold\nSource\nIncrease\nExternal Link\n1\n..."></textarea>
+
+    <button type="submit">Generate Statement</button>
+  </form>
+</body>
+</html>
